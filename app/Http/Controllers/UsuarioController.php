@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
+    public function login(Request $request){
+        $this->validate(request(),[
+            'email' => 'email|required|string',
+            'password' => 'required|string',
+        ]);
+        return dd($request->all());
+    }
     /**
      * Display a listing of the resource.
      *

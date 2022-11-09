@@ -46,6 +46,7 @@ class PromotorController extends Controller
     public function show($id)
     {
         //
+        dd('hola_ promotor'.'--'.$id);
     }
 
     /**
@@ -57,6 +58,7 @@ class PromotorController extends Controller
     public function edit($id)
     {
         //
+        dd('hola_ promotor'.'--'.$id);
     }
 
     /**

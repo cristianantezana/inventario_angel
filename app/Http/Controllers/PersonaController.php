@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -13,7 +14,11 @@ class PersonaController extends Controller
      */
     public function index()
     {
+        $testimonio = Persona::orderBy('estado','desc')->get();
+
+        return view('personas.index', compact('testimonio'));
         //
+      
     }
 
     /**
@@ -24,6 +29,7 @@ class PersonaController extends Controller
     public function create()
     {
         //
+        dd('hola_ create');
     }
 
     /**
@@ -57,6 +63,7 @@ class PersonaController extends Controller
     public function edit($id)
     {
         //
+        dd('hola_ create'.'--'.$id);
     }
 
     /**
