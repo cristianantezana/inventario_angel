@@ -39,11 +39,12 @@ Route::get('/', function () {
 /*Rutas Personas */
 Route::get('personas/index',[PersonaController::class, 'index'])->name('personas.index');
 Route::get('personas/create',[PersonaController::class, 'create'])->name('personas.create');
+Route::post('personas/buscar',[PersonaController::class, 'buscar'])->name('personas.buscar');
 Route::post('personas/store',[PersonaController::class, 'store'])->name('personas.store');
 Route::get('personas/{id}/edit',[PersonaController::class, 'edit'])->name('personas.edit');
-Route::put('personas/update',[PersonaController::class, 'update'])->name('personas.update');
+Route::put('personas/update/{id}',[PersonaController::class, 'update'])->name('personas.update');
 Route::get('personas/{id}/show',[PersonaController::class, 'show'])->name('personas.show');
-Route::get('personas/{id}/destroy',[PersonaController::class, 'destroy'])->name('personas.destroy');
+Route::delete('personas/destroy/{id}',[PersonaController::class, 'destroy'])->name('personas.destroy');
 
 /*Rutas Catalogos */
 Route::get('catalogos/index',[CatalogoController::class, 'index'])->name('catalogos.index');

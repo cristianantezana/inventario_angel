@@ -14,9 +14,8 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $testimonio = Persona::orderBy('estado','desc')->get();
-
-        return view('personas.index', compact('testimonio'));
+        $personas = Persona::where('estado','=',1)->orderBy('cod_persona','desc')->take(10)->get();
+        return view('personas.index', compact('personas'));
         //
       
     }
@@ -41,6 +40,14 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
+        $persona = new Persona;
+        $persona->nombre = $request->input('nombre');
+        $persona->apellido = $request->input('apellido');
+        $persona->celular = $request->input('celular');
+        $persona->celular_2 = $request->input('telefono');
+        $persona->direccion = $request->input('direccion');
+        $persona->save();
+        return redirect()->back()->with('mensaje', 'ok');
     }
 
     /**
@@ -49,9 +56,12 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function buscar(Request $request)
     {
         //
+        $dato = $request->get('buscar');
+        $personas = Persona::where('nombre', 'like', '%'.$dato.'%')->where('estado','=','1')->orderBy('cod_persona','desc')->take(10)->get();
+        return json_encode($personas);
     }
 
     /**
@@ -75,7 +85,9 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         Persona::find($id)->update($request->all());
+        return redirect()->route('personas.index')->with('mensaje', 'ok');
+  
     }
 
     /**
@@ -86,6 +98,18 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $persona = Persona::find($id);
+        if($persona -> estado == 1)
+        {
+            $persona-> estado = 0;
+        }
+        else
+        {
+            $persona->estado = 1;
+        }
+        $persona->save();
+       // return redirect()->route('personas.index')->with('mensaje', 'ok');
+       return "ok";
+        
     }
 }

@@ -16,6 +16,7 @@
       <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4. The starter version of Gradient Able is completely free for personal project." />
       <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="codedthemes">
+      <link rel="stylesheet" href="{{asset('node_modules/sweetalert2/dist/sweetalert2.min.css')}}">
       <!-- Favicon icon -->
       <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
       <!-- Google font-->
@@ -418,6 +419,9 @@
 <script src="{{asset('js/pcoded.min.js')}}"></script>
 <script src="{{asset('js/vartical-demo.js')}}"></script>
 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('node_modules/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+
+@yield('script')
 </body>
 
 </html>
