@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Categoria;
 class CategoriaController extends Controller
 {
     /**
@@ -11,9 +11,18 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function pepe()
+    {
+        //
+        $categorias = Categoria::where('estado','=',1)->orderBy('cod_categoria','desc')->take(10)->get();
+        return view('categorias.index', compact('categorias'));
+        
+    }
+
     public function index()
     {
         //
+        dd('ola');
     }
 
     /**
@@ -35,6 +44,9 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        return $request;
+     
+	
     }
 
     /**

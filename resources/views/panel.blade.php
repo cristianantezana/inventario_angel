@@ -200,9 +200,9 @@
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="breadcrumb.html">
+                                            <a href="{{route('categorias.index')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Breadcrumbs</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Categorias</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>

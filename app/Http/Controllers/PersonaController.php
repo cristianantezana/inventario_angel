@@ -60,7 +60,8 @@ class PersonaController extends Controller
     {
         //
         $dato = $request->get('buscar');
-        $personas = Persona::where('nombre', 'like', '%'.$dato.'%')->where('estado','=','1')->orderBy('cod_persona','desc')->take(10)->get();
+        $personas = Persona::where('nombre', 'like', '%'.$dato.'%')->where('estado','=','1')
+                            ->orderBy('cod_persona','desc')->take(10)->get();
         return json_encode($personas);
     }
 

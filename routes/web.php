@@ -56,7 +56,7 @@ Route::get('catalogos/{id}/show',[CatalogoController::class, 'show'])->name('cat
 Route::get('catalogos/{id}/destroy',[CatalogoController::class, 'destroy'])->name('catalogos.destroy');
 
 /*Rutas Categorias */
-Route::get('categorias/index',[CategoriaController::class, 'index'])->name('categorias.index');
+Route::get('categorias/index',[CategoriaController::class, 'pepe'])->name('categorias.index');
 Route::get('categorias/create',[CategoriaController::class, 'create'])->name('categorias.create');
 Route::post('categorias/store',[CategoriaController::class, 'store'])->name('categorias.store');
 Route::get('categorias/{id}/edit',[CategoriaController::class, 'edit'])->name('categorias.edit');
