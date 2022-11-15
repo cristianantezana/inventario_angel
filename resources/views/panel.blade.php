@@ -29,6 +29,9 @@
       <!-- ico font -->
       <link rel="stylesheet" type="text/css" href="{{asset('icon/icofont/css/icofont.css')}}">
       <!-- Style.css -->
+     
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  
       <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.mCustomScrollbar.css')}}">
   </head>
@@ -420,6 +423,8 @@
 <script src="{{asset('js/vartical-demo.js')}}"></script>
 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script src="{{asset('node_modules/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
 
 @yield('script')
 </body>

@@ -61,7 +61,7 @@ Route::get('categorias/create',[CategoriaController::class, 'create'])->name('ca
 Route::post('categorias/store',[CategoriaController::class, 'store'])->name('categorias.store');
 Route::get('categorias/{id}/edit',[CategoriaController::class, 'edit'])->name('categorias.edit');
 Route::put('categorias/update',[CategoriaController::class, 'update'])->name('categorias.update');
-Route::get('categorias/{id}/show',[CategoriaController::class, 'show'])->name('categorias.show');
+Route::get('categorias/table',[CategoriaController::class, 'table'])->name('categorias.table');
 Route::get('categorias/{id}/destroy',[CategoriaController::class, 'destroy'])->name('categorias.destroy');
 
 /*Rutas Clientes */

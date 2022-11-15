@@ -20,7 +20,7 @@
                         <input type="text"   name ="categoria" class="form-control form-control-round" placeholder="Nombre......." id="categora">
                         <br>
                         <br>
-                        <button type="submit"  class="btn btn-info btn-block">GUARDAR</button>
+                        <button type="submit"  class="btn btn-success btn-block">GUARDAR</button>
                       </form>
                   </div>
               </div>
@@ -29,19 +29,24 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Categorias</h3>
-                    <table class="table">
+                    <table id="datatable-table" class="table">
+                      <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>CATEGORIA</th>
-                            <th>ESTADO</th>
-                            <th>ACCIONES</th>
-                        </tr>
+                          <th>ID</th>
+                          <th>CATEGORIA</th>
+                          <th>ESTADO</th>
+                          <th>ACCIONES</th>
+                      </tr>
+                      </thead>
+                     
                        <tbody>
-                           <tr>
-                               <td>re</td>
-                               <td>re</td>
-                               <td>re</td>
-                           </tr>
+                         <tr>
+                          <td>ss</td>
+                        <td>sa</td>
+                        <td>ss</td>
+                        <td>ss</td>
+                         </tr>
+                        
                        </tbody>
                     </table>
             </div>
@@ -55,6 +60,24 @@
 @section('script')  
 
 <script type="text/javascript">
+
+      function tableCategoria(){
+        $.ajax({
+          url: '{{ route('categorias.table') }}',
+          method: 'GET',
+          success: function(data) {
+          
+         
+            $("#datatable-table").empty();
+			      $("#datatable-table").append(data);
+            $('#table').DataTable( {
+                "order": [[ 0, "desc" ]]
+            }
+             );
+          }
+        });
+      }
+     
  $("#add_employee_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
@@ -73,7 +96,7 @@
                 'Employee Added Successfully!',
                 'success'
               )
-              fetchAllEmployees();
+              tableCategoria();
             }
          
             $("#add_employee_form")[0].reset();
@@ -81,7 +104,9 @@
           }
         });
       });
+     
 $( document ).ready(function() {
+  tableCategoria();
     console.log( "ready!" );
 });
 </script>
