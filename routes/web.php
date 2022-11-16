@@ -31,11 +31,12 @@ use App\Models\Usuario;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('usuarios/login',[UsuarioController::class, 'login'] )->name('usuarios.login');
 Route::get('/', function () {
     return view('panel');
 
 });
+Route::post('usuarios/login',[UsuarioController::class, 'login'] )->name('usuarios.login');
+
 /*Rutas Personas */
 Route::get('personas/index',[PersonaController::class, 'index'])->name('personas.index');
 Route::get('personas/create',[PersonaController::class, 'create'])->name('personas.create');
@@ -56,13 +57,13 @@ Route::get('catalogos/{id}/show',[CatalogoController::class, 'show'])->name('cat
 Route::get('catalogos/{id}/destroy',[CatalogoController::class, 'destroy'])->name('catalogos.destroy');
 
 /*Rutas Categorias */
-Route::get('categorias/index',[CategoriaController::class, 'pepe'])->name('categorias.index');
+Route::get('categorias/index',[CategoriaController::class, 'index'])->name('categorias.index');
 Route::get('categorias/create',[CategoriaController::class, 'create'])->name('categorias.create');
 Route::post('categorias/store',[CategoriaController::class, 'store'])->name('categorias.store');
-Route::get('categorias/{id}/edit',[CategoriaController::class, 'edit'])->name('categorias.edit');
-Route::put('categorias/update',[CategoriaController::class, 'update'])->name('categorias.update');
+Route::get('categorias/edit',[CategoriaController::class, 'edit'])->name('categorias.edit');
+Route::post('categorias/update',[CategoriaController::class, 'update'])->name('categorias.update');
 Route::get('categorias/table',[CategoriaController::class, 'table'])->name('categorias.table');
-Route::get('categorias/{id}/destroy',[CategoriaController::class, 'destroy'])->name('categorias.destroy');
+Route::delete('categorias/destroy',[CategoriaController::class, 'destroy'])->name('categorias.destroy');
 
 /*Rutas Clientes */
 Route::get('clientes/index',[ClienteController::class, 'index'])->name('clientes.index');
@@ -95,10 +96,11 @@ Route::get('devoluciones/{id}/destroy',[DevolucionController::class, 'destroy'])
 Route::get('medidas/index',[MedidaController::class, 'index'])->name('medidas.index');
 Route::get('medidas/create',[MedidaController::class, 'create'])->name('medidas.create');
 Route::post('medidas/store',[MedidaController::class, 'store'])->name('medidas.store');
-Route::get('medidas/{id}/edit',[MedidaController::class, 'edit'])->name('medidas.edit');
-Route::put('medidas/update',[MedidaController::class, 'update'])->name('medidas.update');
+Route::get('medidas/edit',[MedidaController::class, 'edit'])->name('medidas.edit');
+Route::get('medidas/table',[MedidaController::class, 'table'])->name('medidas.table');
+Route::post('medidas/update',[MedidaController::class, 'update'])->name('medidas.update');
 Route::get('medidas/{id}/show',[MedidaController::class, 'show'])->name('medidas.show');
-Route::get('medidas/{id}/destroy',[MedidaController::class, 'destroy'])->name('medidas.destroy');
+Route::delete('medidas/destroy',[MedidaController::class, 'destroy'])->name('medidas.destroy');
 
 /*Rutas Pedidos */
 Route::get('pedidos/index',[PedidoController::class, 'index'])->name('pedidos.index');
@@ -114,18 +116,18 @@ Route::get('presentaciones/index',[PresentacionController::class, 'index'])->nam
 Route::get('presentaciones/create',[PresentacionController::class, 'create'])->name('presentaciones.create');
 Route::post('presentaciones/store',[PresentacionController::class, 'store'])->name('presentaciones.store');
 Route::get('presentaciones/{id}/edit',[PersonaController::class, 'edit'])->name('presentaciones.edit');
-Route::put('presentaciones/update',[PresentacionController::class, 'update'])->name('presentaciones.update');
+Route::put('presentaciones/update/{id}',[PresentacionController::class, 'update'])->name('presentaciones.update');
 Route::get('presentaciones/{id}/show',[PresentacionController::class, 'show'])->name('presentaciones.show');
-Route::get('presentaciones/{id}/destroy',[PresentacionController::class, 'destroy'])->name('presentaciones.destroy');
+Route::delete('presentaciones/destroy/{id}',[PresentacionController::class, 'destroy'])->name('presentaciones.destroy');
 
 /*Rutas Productos */
 Route::get('productos/index',[ProductoController::class, 'index'])->name('productos.index');
 Route::get('productos/create',[ProductoController::class, 'create'])->name('productos.create');
 Route::post('productos/store',[ProductoController::class, 'store'])->name('productos.store');
 Route::get('productos/{id}/edit',[ProductoController::class, 'edit'])->name('productos.edit');
-Route::put('productos/update',[ProductoController::class, 'update'])->name('productos.update');
+Route::put('productos/update/{id}',[ProductoController::class, 'update'])->name('productos.update');
 Route::get('productos/{id}/show',[ProductoController::class, 'show'])->name('productos.show');
-Route::get('productos/{id}/destroy',[ProductoController::class, 'destroy'])->name('productos.destroy');
+Route::delete('productos/destroy/{id}',[ProductoController::class, 'destroy'])->name('productos.destroy');
 
 /*Rutas Promociones */
 Route::get('promociones/index',[PromocionController::class, 'index'])->name('promociones.index');

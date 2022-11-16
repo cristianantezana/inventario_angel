@@ -11,19 +11,14 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pepe()
+    public function index()
     {
         //
         $categorias = Categoria::where('estado','=',1)->orderBy('cod_categoria','desc')->take(10)->get();
         return view('categorias.index', compact('categorias'));
         
     }
-
-    public function index()
-    {
-        //
-        dd('ola');
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +39,9 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
-        $categoira = new Categoria();
-        $categoira->nombre_categoria = $request->categoria;
-        $categoira->save();
+        $categoria = new Categoria();
+        $categoria->nombre_categoria = $request->categoria;
+        $categoria->save();
         return response()->json([
 			'status' => 200,
 		]);
@@ -54,36 +49,34 @@ class CategoriaController extends Controller
 	
     }
     public function table() {
-		$emps = Categoria::where('estado','=',1)->orderBy('cod_categoria','DESC')->get();;
-		$output = '';
-		if ($emps->count() > 0) {
-			$output .= '<table id="table" class="table table-striped cell-border" style="width:100%">
-                        <thead>
+		$categorias = Categoria::where('estado','=',1)->orderBy('cod_categoria','DESC')->get();;
+		$tabla = '';
+        $contador = 1;
+		if ($categorias->count() > 0) {
+			$tabla .= '<table id="table" class="table table-striped cell-border" style="width:100%">
+                        <thead class="bg-primary">
                             <tr>
-                                <th><center>ID</center></th>
+                                <th><center>ITEM</center></th>
                                 <th><center>Nombre</center></th>
                                 <th><center>Acciones</center></th>
                             </tr>
                         </thead>
                         <tbody>';
-                        foreach ($emps as $emp) {
-                            $output .= '<tr>
-                            <td><center>'.$emp->cod_categoria.'</center></td>
-                            <td><center>'.$emp->nombre_categoria.'</center></td>
-                            
+                        foreach ($categorias as $item) {
+                            $tabla .= '<tr>
+                            <td><center>'.$contador.'</center></td>
+                            <td><center>'.$item->nombre_categoria.'</center></td>
                             <td><center>
-                            <button type="button" "  class="btn btn-warning" data-toggle="modal" data-target="#editarPersona' . $emp->cod_categoria . '"><i class="fa fa-pencil" aria-hidden="true">  </i>
-                            </button>
-                            <button class="btn btn-danger eliminarPersona" method="DELETE" token="{{ csrf_token() }}" pagina="personas/index">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
+                            <a href="#" id="' . $item->cod_categoria . '" data-toggle="modal" data-target="#staticBackdrop" class="text-success mx-1 editar" ><i class="fa fa-pencil h4"></i></a>
+                            <a href="#" id="' . $item->cod_categoria . '" class="text-danger mx-1 eliminar"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                             </center></td>
                         </tr>';
+                        $contador++;
                         }
-			$output .= '</tbody></table>';
-			echo $output;
+			$tabla .= '</tbody></table>';
+			echo $tabla;
 		} else {
-			echo '<h1 class="text-center text-secondary my-5">No record present in the database!</h1>';
+			echo '<h1 class="text-center text-secondary my-5">No hay registro presente en la base de datos!</h1>';
 		}
 	}
 
@@ -104,9 +97,12 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
         //
+        $id = $request->id;
+		$data = Categoria::find($id);
+		return response()->json($data);
     }
 
     /**
@@ -116,9 +112,15 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+		$categoria = Categoria::find($request->categoria_id);
+		$data = ['nombre_categoria' => $request->nombre];
+		$categoria->update($data);
+		return response()->json([
+			'status' => 200,
+		]);
     }
 
     /**
@@ -127,8 +129,12 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->id;
+        $categoria = Categoria::find($id);
+		$data = ['estado' => '0'];
+		$categoria->update($data);
     }
 }

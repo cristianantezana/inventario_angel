@@ -11,7 +11,7 @@ class Medida extends Model
     protected $primaryKey = 'cod_medida';
     protected $table = 'medida';
 
-    protected $fillable = [ 'cod_medida','nombre_medida','estado',
+    protected $fillable = [ 'cod_medida','nombre_medida','sigla_medida','estado',
                             'created_at','updated_at'
                             ];
     //relaciones

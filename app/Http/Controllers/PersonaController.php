@@ -100,17 +100,9 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         $persona = Persona::find($id);
-        if($persona -> estado == 1)
-        {
-            $persona-> estado = 0;
-        }
-        else
-        {
-            $persona->estado = 1;
-        }
+        $persona-> estado = 0;
         $persona->save();
-       // return redirect()->route('personas.index')->with('mensaje', 'ok');
-       return "ok";
+        return "ok";
         
     }
 }
