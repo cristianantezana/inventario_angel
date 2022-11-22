@@ -44,8 +44,8 @@
                                                     <a href="#"  data-toggle="modal"
                                                     data-target="#editarCliente{{$proveedor->cod_promotor}}" class="btn btn-warning btn-sm mx-2 editar" ><i class="fa fa-pencil "></i>
                                                     </a>
-                                                    <button class="btn btn-danger btn-sm  mx-2 eliminarCliente" action="{{ url('clientes/destroy',$proveedor->cod_proveedor) }}"
-                                                        method="DELETE" token="{{ csrf_token() }}" pagina="clientes">
+                                                    <button class="btn btn-danger btn-sm  mx-2 eliminarCliente" action="{{ url('proveedores/destroy',$proveedor->cod_proveedor) }}"
+                                                        method="DELETE" token="{{ csrf_token() }}" pagina="proveedores">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </button>
                                                 </center>
@@ -56,12 +56,12 @@
                                                 <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header modal-header-warning">
-                                                    <h4 class="modal-title" id="exampleModalLabel">EDITAR CLIENTE</h4>
+                                                    <h4 class="modal-title" id="exampleModalLabel">EDITAR PROVEEDOR</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     </div>
-                                                    <form action="{{url('clientes/update', $proveedor->cod_cliente)}}" method="POST">
+                                                    <form action="{{url('proveedores/update', $proveedor->cod_proveedor)}}" method="POST">
                                                     @method('PUT')
                                                         @csrf
                                                     <input type="text" hidden value="{{$proveedor->persona->cod_persona}}" name="cod_persona">
@@ -92,8 +92,8 @@
                                                                 <input type="text" value="{{$proveedor->persona->direccion}}" class="form-control" id="direccion" name="direccion"  required>
                                                             </div>
                                                             <div class="form-group col-3"> 
-                                                                <label for="nit">Nit</label>
-                                                                <input type="number" value="{{$proveedor->nit}}" class="form-control" id="nit" name="nit"  required>
+                                                                <label for="empresa">Empresa</label>
+                                                                <input type="text" value="{{$proveedor->empresa}}" class="form-control" id="nit" name="empresa"  required>
                                                             </div>
                                                             <div class="form-group col-3"> 
                                                                 <label for="razon_social">Razon Social</label>
@@ -146,7 +146,7 @@
       let pagina = $(this).attr("pagina");
       Swal.fire({
         title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
+        text: "De elimnar a este Proveedor!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

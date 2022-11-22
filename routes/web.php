@@ -156,9 +156,10 @@ Route::get('proveedores',[ProveedorController::class, 'index'])->name('proveedor
 Route::get('proveedores/create',[ProveedorController::class, 'create'])->name('proveedores.create');
 Route::post('proveedores/store',[ProveedorController::class, 'store'])->name('proveedores.store');
 Route::get('proveedores/{id}/edit',[ProveedorController::class, 'edit'])->name('proveedores.edit');
-Route::put('proveedores/update',[ProveedorController::class, 'update'])->name('proveedores.update');
+Route::put('proveedores/update/{id}',[ProveedorController::class, 'update'])->name('proveedores.update');
+Route::get('proveedores/persona/{id}',[ProveedorController::class, 'personaRegistrada'])->name('proveedores.persona');
 Route::get('proveedores/{id}/show',[ProveedorController::class, 'show'])->name('proveedores.show');
-Route::get('proveedores/{id}/destroy',[ProveedorController::class, 'destroy'])->name('proveedores.destroy');
+Route::delete('proveedores/destroy/{id}',[ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 
 /*Rutas Roles */
 Route::get('roles',[RolController::class, 'index'])->name('roles.index');

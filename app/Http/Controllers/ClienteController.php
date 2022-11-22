@@ -24,7 +24,6 @@ class ClienteController extends Controller
     $cliente->nit = $request->input('nit');
     $cliente->razon_social = $request->input('razon_social');
     $cliente->save();
-    dd($request->input('id'));
   }
 
   public function show($id)
@@ -39,14 +38,14 @@ class ClienteController extends Controller
 
   public function update(Request $request, $id)
   {
-      $cod_persona = $request->cod_persona;
-      $persona = Persona::find($cod_persona);
-      $cliente = Cliente::find($id);
-      $data = ['nit' => $request->nit ,'razon_social' => $request->razon_social];
-      $cliente->update($data);
-      $data_persona = ['nombre' => $request->nombre,'apellido' => $request->apellido,'celular' => $request->celular,'celular_2' => $request->telefono,'direccion' => $request->direccion];
-      $persona->update($data_persona);
-      return redirect()->route('clientes.index')->with('mensaje', 'ok');
+    $cod_persona = $request->cod_persona;
+    $persona = Persona::find($cod_persona);
+    $cliente = Cliente::find($id);
+    $data = ['nit' => $request->nit ,'razon_social' => $request->razon_social];
+    $cliente->update($data);
+    $data_persona = ['nombre' => $request->nombre,'apellido' => $request->apellido,'celular' => $request->celular,'celular_2' => $request->telefono,'direccion' => $request->direccion];
+    $persona->update($data_persona);
+    return redirect()->route('clientes.index')->with('mensaje', 'ok');
   }
 
   public function destroy($id)

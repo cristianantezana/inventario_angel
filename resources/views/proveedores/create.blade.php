@@ -112,7 +112,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="nit">Empresa<span class="required">*</span></label>
-                      <input type="text" class="form-control " name="nit" placeholder="Empresa" >
+                      <input type="text" class="form-control " name="empresa" placeholder="Empresa" >
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-primary">Guardar</button>
-                  <a class="btn btn-danger" href="{{route('clientes.index')}}">Volver</a>
+                  <a class="btn btn-danger" href="{{route('proveedores.index')}}">Volver</a>
                 </div>
               </form>
             </div>
