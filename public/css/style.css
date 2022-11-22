@@ -26,6 +26,9 @@ File: style.css
 /**  =====================
       Custom css start
 ==========================  **/
+a:hover {
+  color: rgb(114, 78, 10);
+}
 .modal-header-success {
   color:#fff;
   padding:9px 15px;
@@ -219,7 +222,7 @@ h6 {
       Main-body css start
 ==========================  **/
 .main-body .page-wrapper {
-  padding: 1.8rem;
+  /* padding: 1.8rem; */
   -webkit-transition: all ease-in 0.3s;
   transition: all ease-in 0.3s; }
 .main-body .page-header h5 {

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Promotor;
 
 class PromotorController extends Controller
 {
   public function index()
   {
-      
+    
   }
 
   public function create()

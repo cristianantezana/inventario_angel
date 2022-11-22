@@ -80,7 +80,12 @@
         }
       });
     }
-        
+
+    $( document ).ready(function() {
+      tableCategoria();
+        console.log( "ready!" );
+    });
+
     $("#agregar_form").submit(function(e){
       e.preventDefault();
       const fd = new FormData(this);
@@ -108,11 +113,6 @@
           $("#agregar_form")[0].reset(); 
         }
       });
-    });
-        
-    $( document ).ready(function() {
-      tableCategoria();
-        console.log( "ready!" );
     });
 
     $("#editar_form").submit(function(e){
@@ -145,8 +145,9 @@
         }
       });
     });
-      // funcion para editar con ajax request
-    $(document).on('click', '.editar', function(e){
+
+     // funcion para editar con ajax request
+     $(document).on('click', '.editar', function(e){
       e.preventDefault();
       let id = $(this).attr('id');
       $.ajax
@@ -160,6 +161,7 @@
         }
       });
     });
+
     //funcion para eliminar con ajax
     $(document).on('click', '.eliminar',function(e){
       e.preventDefault();
@@ -175,8 +177,8 @@
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, eliminar!',
         cancelButtonText: 'Cancelar'
-      }).then((result) 
-        => {
+      }).then((result) =>
+        {
           if (result.isConfirmed)
           {
             $.ajax

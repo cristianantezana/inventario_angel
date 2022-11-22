@@ -5,39 +5,29 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header modal-header-primary">
-          <h5 class="modal-title" id="exampleModalLabel">REGISTRAR PERSONA</h5>
+          <h5 class="modal-title" id="exampleModalLabel">REGISTRAR VEHICULOS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{url('personas/store')}}" method="POST">
+        <form action="{{url('vehiculos/store')}}" method="POST">
             @csrf
           <div class="modal-body">
               <div class="row">
                 <div class="form-group col-6"> 
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre"  required>
+                  <label for="placa">PLACA</label>
+                  <input type="text" class="form-control" id="placa" name="placa"  required>
                 </div>
                 <div class="form-group col-6"> 
-                  <label for="apaterno">Apellido</label>
-                  <input type="text" class="form-control" id="apellido" name="apellido">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-6"> 
-                  <label for="nombre">Celular</label>
-                  <input type="number" class="form-control" id="celular" name="celular"  required>
-                </div>
-                <div class="form-group col-6"> 
-                  <label for="apaterno">Telefono</label>
-                  <input type="number" class="form-control" id="telefono" name="telefono">
+                  <label for="marca">MARCA</label>
+                  <input type="text" class="form-control" id="marca" name="marca">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-6"> 
-                  <label for="nombre">Direccion</label>
-                  <input type="text" class="form-control" id="direccion" name="direccion"  required>
-                </div>  
+                  <label for="color">COLOR</label>
+                  <input type="text" class="form-control" id="celular" name="color"  required>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -61,7 +51,7 @@
                 @if (session('status'))
                     <div class="alert alert-success">{{session('status') }}</div>
                 @endif
-                <h2 style="color:rgba(17, 16, 16, 0.77)" class="m-b-10">GESTION PERSONA</h2>
+                <h2 style="color:rgba(17, 16, 16, 0.77)" class="m-b-10">GESTION VEHICULOS</h2>
                 <div class="card">
                   <div class="card-header">
                     <div class="row">
@@ -81,78 +71,64 @@
                         <thead class="bg-primary">
                             <tr>
                               <th class="text-center" scope="col">ID</th>
-                              <th class="text-center" scope="col">NOMBRE</th>
-                              <th class="text-center" scope="col">APELLIDO</th>
-                              <th class="text-center" scope="col">CELULAR</th>
-                              <th class="text-center" scope="col">TELEFONO</th>
-                              <th class="text-center" scope="col">DIRECCION</th>
+                              <th class="text-center" scope="col">COLOR</th>
+                              <th class="text-center" scope="col">MARCA</th>
+                              <th class="text-center" scope="col">PLACA</th>
                               <th class="text-center" scope="col">EDITAR</th>
                               <th class="text-center" scope="col">ELIMINAR</th>
-                              </tr>
+                            </tr>
                         </thead>
                         <tbody id="data_persona">
                           <?php $contador = 1?>
-                          @foreach ($personas as $item)
+                          @foreach ($vehiculos as $item)
                             <tr>
                               <th  class="text-center" scope="row"><?php echo $contador;?></th>
-                              <td class="text-center">{{$item->nombre}}</td>
-                              <td class="text-center">{{$item->apellido}}</td>
-                              <td class="text-center">{{$item->celular}}</td>
-                              <td class="text-center">{{$item->celular_2}}</td>
-                              <td class="text-center">{{$item->direccion}}</td>
+                              <td class="text-center">{{$item->color}}</td>
+                              <td class="text-center">{{$item->marca}}</td>
+                              <td class="text-center">{{$item->placa}}</td>
                               <td class="text-center">
                                   <button type="button" " class="btn btn-warning" data-toggle="modal"
-                                  data-target="#editarPersona{{$item->cod_persona}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                  data-target="#editarVehiculo{{$item->cod_vehiculo}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                   </button>     
                               </td>
                               <td>
                                 <center>
-                                  <button class="btn btn-danger eliminarPersona" action="{{ url('personas/destroy',$item->cod_persona) }}"
-                                    method="DELETE" token="{{ csrf_token() }}" pagina="personas">
+                                  <button class="btn btn-danger eliminarPersona" action="{{ url('vehiculos/destroy',$item->cod_vehiculo) }}"
+                                    method="DELETE" token="{{ csrf_token() }}" pagina="vehiculos">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                   </button>
                                 </center>
                               </td>
                             </tr>
                                 {{-- modal para editar --}}
-                                <div class="modal fade" id="editarPersona{{$item->cod_persona}}" tabindex="-1"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="editarVehiculo{{$item->cod_vehiculo}}" tabindex="-1"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                       <div class="modal-header modal-header-warning">
-                                        <h4 class="modal-title" id="exampleModalLabel">EDITAR PERSONA</h4>
+                                        <h4 class="modal-title" id="exampleModalLabel">EDITAR VEHICULO</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
-                                      <form action="{{url('personas/update', $item->cod_persona)}}" method="POST">
+                                      <form action="{{url('vehiculos/update', $item->cod_vehiculo)}}" method="POST">
                                         @method('PUT')
                                           @csrf
                                         <div class="modal-body">
                                           <div class="row">
                                             <div class="form-group col-6"> 
-                                                <label for="nombre">Nombre</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{$item->nombre}}" required>
+                                                <label for="nombre">PLACA</label>
+                                                <input type="text" class="form-control"  name="placa" value="{{$item->placa}}" required>
                                             </div>
                                             <div class="form-group col-6"> 
-                                                <label for="apaterno">Apellido</label>
-                                                <input type="text" value="{{$item->apellido}}" class="form-control" id="apellido" name="apellido">
+                                                <label for="apaterno">MARCA</label>
+                                                <input type="text" value="{{$item->marca}}" class="form-control" name="marca">
                                             </div>
                                           </div>
                                           <div class="row">
                                             <div class="form-group col-6"> 
-                                                <label for="nombre">Celular</label>
-                                                <input type="number" value="{{$item->celular}}" class="form-control" id="celular" name="celular"  required>
-                                            </div>
-                                            <div class="form-group col-6"> 
-                                                <label for="apaterno">Telefono</label>
-                                                <input type="number" value="{{$item->celular_2}}" class="form-control" id="telefono" name="telefono">
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="form-group col-6"> 
-                                                <label for="nombre">Direccion</label>
-                                                <input type="text" value="{{$item->direccion}}" class="form-control" id="direccion" name="direccion"  required>
-                                            </div>
+                                                <label for="nombre">COLOR</label>
+                                                <input type="text" value="{{$item->color}}" class="form-control" id="color" name="color"  required>
+                                            </div> 
                                           </div>
                                         </div>
                                         <div class="modal-footer">
@@ -196,7 +172,7 @@
       e.preventDefault();
       Swal.fire({
         title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
+        text: "De elimnar a este Vehiculos",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -207,53 +183,11 @@
       {
         if (result.isConfirmed)
         {
-            this.submit();
+          this.submit();
         }
       });
     });
-    $('body').on('keyup', '#buscar', function(){
-      let buscar = $(this).val();
-      $.ajax
-      ({
-        method:"POST",
-        url: "{{url('personas/buscar')}}",
-        dataType:"json",
-        data:{'_token':'{{ csrf_token() }}',buscar:buscar},
-        success: function(res)
-        {
-          let tabla = '';
-          let contador = 0;
-          $('#data_persona').html('');
-          $.each(res, function(index, value)
-          {
-            contador++;
-            let cod = value.cod_persona;
-            let url = 'action="{{url('/')}}/personas/destroy/'+cod+'"';
-            tabla = `<tr>
-                      <th class="text-center">${contador}</th>
-                      <td class="text-center">${value.nombre}</td>
-                      <td class="text-center">${value.apellido}</td>
-                      <td class="text-center">${value.celular}</td>
-                      <td class="text-center">${value.celular_2}</td>
-                      <td class="text-center">${value.direccion}</td>
-                      <td class="text-center">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarPersona${cod}">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                      </td>
-                      <td>
-                        <center>
-                          <button class="btn btn-danger eliminarPersona" ${url}method="DELETE" token="{{csrf_token()}}" pagina="personas/index">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                          </button>
-                        </center>
-                      </td>
-                    </tr>`;
-            $('#data_persona').append(tabla);
-          })
-        }
-      });
-    });
+  
     $(document).on("click", ".eliminarPersona",function(){
       var ruta = $("#ruta").val();
       let action = $(this).attr("action");

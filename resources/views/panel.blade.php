@@ -114,8 +114,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>
-                        
+                        </li>                    
                         <li class="user-profile header-notification">
                             <a href="#!">
                                 <img src="{{asset('images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
@@ -132,8 +131,7 @@
                                     <a href="user-profile.html">
                                         <i class="ti-user"></i> Profile
                                     </a>
-                                </li>
-                                
+                                </li>                      
                                 <li>
                                     <a href="auth-lock-screen.html">
                                         <i class="ti-lock"></i> Lock Screen
@@ -154,8 +152,7 @@
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                        <div class="pcoded-inner-navbar main-menu">
-                            
+                        <div class="pcoded-inner-navbar main-menu">                    
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
@@ -207,8 +204,27 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                      
-
+                                        <li class=" ">
+                                            <a href="{{route('clientes.index')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Clientes</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="{{route('proveedores.index')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Proveedores</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="{{route('vehiculos.index')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Vehiculos</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>       
@@ -217,11 +233,9 @@
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
-
                                     <div class="pcoded-inner-content">
                                         @yield('contenido')
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -247,6 +261,7 @@
 <!-- Custom js -->
 <script type="text/javascript" src="{{asset('pages/dashboard/custom-dashboard.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/funcionesGenerales.js')}}"></script>
 <script type="text/javascript " src="{{asset('js/SmoothScroll.js')}}"></script>
 <script src="{{asset('js/pcoded.min.js')}}"></script>
 <script src="{{asset('js/vartical-demo.js')}}"></script>

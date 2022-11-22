@@ -73,6 +73,7 @@
 @endsection
 @section('script')  
   <script type="text/javascript">
+  console.log('ola');
       function tableMedida()
       {
         $.ajax
