@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gradient Able bootstrap admin template by codedthemes </title>
+    <title>Distribuidora Angel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -56,20 +56,6 @@
                     <ul class="nav-left">
                         <li>
                             <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                        </li>
-                        <li class="header-search">
-                            <div class="main-search morphsearch-search">
-                                <div class="input-group">
-                                    <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#!" onclick="javascript:toggleFullScreen()">
-                                <i class="ti-fullscreen"></i>
-                            </a>
                         </li>
                     </ul>
                     <ul class="nav-right">
@@ -153,7 +139,7 @@
                     <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">                    
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation"></div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
                                     <a href="index.html">
@@ -164,8 +150,8 @@
                                 </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Gestiones</span>
+                                        <span class="pcoded-micon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Usuarios</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
@@ -176,6 +162,30 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        <li class=" ">
+                                            <a href="{{route('clientes.index')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Clientes</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="{{route('proveedores.index')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Proveedores</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Productos</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                       
                                         <li class=" ">
                                             <a href="{{route('categorias.index')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -204,20 +214,15 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
-                                            <a href="{{route('clientes.index')}}">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Clientes</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="{{route('proveedores.index')}}">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Proveedores</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-car" aria-hidden="true"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Vehiculos</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
                                         <li class=" ">
                                             <a href="{{route('vehiculos.index')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>

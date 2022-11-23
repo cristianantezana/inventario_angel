@@ -65,19 +65,24 @@
                 <div class="card">
                   <div class="card-header">
                     <div class="row">
-                      <div class="form-group col-6"> 
-                          <input class="form-control mr-sm-2" id="buscar" type="search" placeholder="Buscar" aria-label="Search">
+                      <div class="form-group col-6">
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </div>
+                          <input class="form-control" id="buscar" name="buscar" type="text" placeholder="Buscar Persona....."/>
+                        </div> 
                       </div>
                       <div class="form-group col-6">      
-                        <button type="button" " style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          REGISTRAR NUEVO
+                        <button type="button" style="float: right; color: white; font-weight: bold;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          REGISTRAR PERSONA <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div class="card-block table-border-style">
                     <div class="table-responsive">
-                      <table class="table">
+                      <table class="table table-bordered table-striped table-hover" id="table">
                         <thead class="bg-primary">
                             <tr>
                               <th class="text-center" scope="col">ID</th>
@@ -86,8 +91,7 @@
                               <th class="text-center" scope="col">CELULAR</th>
                               <th class="text-center" scope="col">TELEFONO</th>
                               <th class="text-center" scope="col">DIRECCION</th>
-                              <th class="text-center" scope="col">EDITAR</th>
-                              <th class="text-center" scope="col">ELIMINAR</th>
+                              <th class="text-center" scope="col">ACCIONES</th>
                               </tr>
                         </thead>
                         <tbody id="data_persona">
@@ -100,14 +104,12 @@
                               <td class="text-center">{{$item->celular}}</td>
                               <td class="text-center">{{$item->celular_2}}</td>
                               <td class="text-center">{{$item->direccion}}</td>
-                              <td class="text-center">
-                                  <button type="button" " class="btn btn-warning" data-toggle="modal"
-                                  data-target="#editarPersona{{$item->cod_persona}}"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                  </button>     
-                              </td>
-                              <td>
+                              <td class="text-center">     
                                 <center>
-                                  <button class="btn btn-danger eliminarPersona" action="{{ url('personas/destroy',$item->cod_persona) }}"
+                                  <button type="button" " class="btn btn-warning btn-sm mx-2" data-toggle="modal"
+                                  data-target="#editarPersona{{$item->cod_persona}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                  </button>
+                                  <button class="btn btn-danger btn-sm mx-2 eliminarPersona" action="{{ url('personas/destroy',$item->cod_persona) }}"
                                     method="DELETE" token="{{ csrf_token() }}" pagina="personas">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                   </button>
@@ -192,25 +194,9 @@
     </script>    
   @endif    
   <script type="text/javascript">
-    $('.form_eliminar').submit(function(e){
-      e.preventDefault();
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-      {
-        if (result.isConfirmed)
-        {
-            this.submit();
-        }
-      });
-    });
+    let clase = 'eliminarPersona';
+    let mensaje = "De elimnar a este Registro!";
+    eliminarPorRuta(mensaje,clase);
     $('body').on('keyup', '#buscar', function(){
       let buscar = $(this).val();
       $.ajax
@@ -237,13 +223,11 @@
                       <td class="text-center">${value.celular_2}</td>
                       <td class="text-center">${value.direccion}</td>
                       <td class="text-center">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarPersona${cod}">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                      </td>
-                      <td>
                         <center>
-                          <button class="btn btn-danger eliminarPersona" ${url}method="DELETE" token="{{csrf_token()}}" pagina="personas/index">
+                          <button type="button" class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#editarPersona${cod}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm mx-2 eliminarPersona" ${url}method="DELETE" token="{{csrf_token()}}" pagina="personas">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                           </button>
                         </center>
@@ -253,56 +237,6 @@
           })
         }
       });
-    });
-    $(document).on("click", ".eliminarPersona",function(){
-      var ruta = $("#ruta").val();
-      let action = $(this).attr("action");
-      let method = $(this).attr("method");
-      let token = $(this).attr("token");
-      let pagina = $(this).attr("pagina");
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-        {
-          if(result.isConfirmed)
-          {
-            let datos = new FormData();
-            datos.append("_method", method);
-            datos.append("_token", token);
-            $.ajax
-            ({
-              url:action,
-              method: "POST",
-              data:datos,
-              cache:false,
-              contentType:false,
-              processData:false,
-              success: function(res)
-              {
-                if(res == "ok")
-                {
-                  Swal.fire({
-                  type: 'success',
-                  title: '!El registro ha siddo eliminado...',
-                  showConfirmButton: true,
-                  confirmButtonText: 'Cerrar',
-                  }).then((result) => {
-                      if (result.isConfirmed) {
-                        window.location = ruta+'/'+pagina;
-                      }
-                  });
-                }
-              }
-            })
-          }
-        });
     });
   </script>
 @endsection

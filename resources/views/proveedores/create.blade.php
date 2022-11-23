@@ -51,7 +51,7 @@
   <!-- Fin de Modal -->
   <section class="section">
     <div class="section-header modal-header-primary">
-        <h3 class="page__heading">Nuevo Cliente</h3>
+        <h3 class="page__heading">Nuevo Proveedor</h3>
     </div>
     <div class="section-body">
       <div class="row">

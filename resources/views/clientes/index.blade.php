@@ -17,7 +17,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped mt-15 " id="table">
+                            <table class="table table-striped table-bordered mt-15 " id="table">
                                 <thead style="background-color: #6777ef;">
                                     <th class="text-center" style="color: #fff;">ID</th>
                                     <th class="text-center" style="color: #fff;">NOMBRE</th>

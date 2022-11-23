@@ -64,7 +64,6 @@
       <div class="col-lg-8 col-md-12">
         <div class="card">
           <div class="card-header">
-              <h3>Medidas Producto</h3>
             <div id="datatable-table" ></div>
           </div>
       </div>
@@ -82,9 +81,10 @@
           method: 'GET',
           success: function(data)
           {
+            let tabla = 'table_medida';
             $("#datatable-table").empty();
             $("#datatable-table").append(data);
-            $('#table_medida').DataTable({"order": [[ 0, "asc" ]]});
+            tableEs(tabla);
           }
         });
       } 
@@ -178,7 +178,8 @@
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Si, eliminar!',
+          cancelButtonText: 'Cancelar'
         }).then((result) =>
           {
             if (result.isConfirmed)

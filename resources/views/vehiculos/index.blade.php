@@ -2,8 +2,8 @@
 @section('contenido')
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
         <div class="modal-header modal-header-primary">
           <h5 class="modal-title" id="exampleModalLabel">REGISTRAR VEHICULOS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -39,7 +39,6 @@
     </div>
   </div>
   <!-- Fin de Modal -->
-        <!-- inner page section -->
   <section class="inner_page_head">
     <input type="hidden" id="ruta" value="{{url('/')}}">
     <div class="container_fuild">
@@ -51,31 +50,29 @@
                 @if (session('status'))
                     <div class="alert alert-success">{{session('status') }}</div>
                 @endif
-                <h2 style="color:rgba(17, 16, 16, 0.77)" class="m-b-10">GESTION VEHICULOS</h2>
                 <div class="card">
                   <div class="card-header">
-                    <div class="row">
-                      <div class="form-group col-6"> 
-                          <input class="form-control mr-sm-2" id="buscar" type="search" placeholder="Buscar" aria-label="Search">
+                    <div class="row ">
+                      <div class="form-group col-6">      
+                        <h2 style="color:rgba(17, 16, 16, 0.77)" class="m-b-10">GESTION VEHICULOS</h2>
                       </div>
                       <div class="form-group col-6">      
-                        <button type="button" " style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          REGISTRAR NUEVO
+                        <button type="button" style="float: right; color: white; font-weight: bold;" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+                          REGISTRAR NUEVO <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div class="card-block table-border-style">
                     <div class="table-responsive">
-                      <table class="table">
-                        <thead class="bg-primary">
+                      <table class="table table-bordered table-striped table-hover" id="table">
+                        <thead style="background-color: #6777ef;">
                             <tr>
-                              <th class="text-center" scope="col">ID</th>
-                              <th class="text-center" scope="col">COLOR</th>
-                              <th class="text-center" scope="col">MARCA</th>
-                              <th class="text-center" scope="col">PLACA</th>
-                              <th class="text-center" scope="col">EDITAR</th>
-                              <th class="text-center" scope="col">ELIMINAR</th>
+                              <th class="text-center" style="color: #fff;">ITEMS</th>
+                              <th class="text-center" style="color: #fff;">COLOR</th>
+                              <th class="text-center" style="color: #fff;">MARCA</th>
+                              <th class="text-center" style="color: #fff;">PLACA</th>
+                              <th class="text-center" style="color: #fff;">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody id="data_persona">
@@ -87,13 +84,11 @@
                               <td class="text-center">{{$item->marca}}</td>
                               <td class="text-center">{{$item->placa}}</td>
                               <td class="text-center">
-                                  <button type="button" " class="btn btn-warning" data-toggle="modal"
+                                <center>
+                                  <button type="button" " class="btn btn-warning btn-sm mx-2" data-toggle="modal"
                                   data-target="#editarVehiculo{{$item->cod_vehiculo}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                   </button>     
-                              </td>
-                              <td>
-                                <center>
-                                  <button class="btn btn-danger eliminarPersona" action="{{ url('vehiculos/destroy',$item->cod_vehiculo) }}"
+                                  <button class="btn btn-danger btn-sm mx-2 eliminarVehiculo" action="{{ url('vehiculos/destroy',$item->cod_vehiculo) }}"
                                     method="DELETE" token="{{ csrf_token() }}" pagina="vehiculos">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                   </button>
@@ -102,7 +97,7 @@
                             </tr>
                                 {{-- modal para editar --}}
                                 <div class="modal fade" id="editarVehiculo{{$item->cod_vehiculo}}" tabindex="-1"aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                  <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                       <div class="modal-header modal-header-warning">
                                         <h4 class="modal-title" id="exampleModalLabel">EDITAR VEHICULO</h4>
@@ -168,76 +163,11 @@
     </script>    
   @endif    
   <script type="text/javascript">
-    $('.form_eliminar').submit(function(e){
-      e.preventDefault();
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar a este Vehiculos",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-      {
-        if (result.isConfirmed)
-        {
-          this.submit();
-        }
-      });
-    });
-  
-    $(document).on("click", ".eliminarPersona",function(){
-      var ruta = $("#ruta").val();
-      let action = $(this).attr("action");
-      let method = $(this).attr("method");
-      let token = $(this).attr("token");
-      let pagina = $(this).attr("pagina");
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-        {
-          if(result.isConfirmed)
-          {
-            let datos = new FormData();
-            datos.append("_method", method);
-            datos.append("_token", token);
-            $.ajax
-            ({
-              url:action,
-              method: "POST",
-              data:datos,
-              cache:false,
-              contentType:false,
-              processData:false,
-              success: function(res)
-              {
-                if(res == "ok")
-                {
-                  Swal.fire({
-                  type: 'success',
-                  title: '!El registro ha siddo eliminado...',
-                  showConfirmButton: true,
-                  confirmButtonText: 'Cerrar',
-                  }).then((result) => {
-                      if (result.isConfirmed) {
-                        window.location = ruta+'/'+pagina;
-                      }
-                  });
-                }
-              }
-            })
-          }
-        });
-    });
+    let tabla = 'table';
+    let clase = 'eliminarVehiculo';
+    let mensaje = "De elimnar a este Vehiculo!";
+    tableEs(tabla);
+    eliminarPorRuta(mensaje,clase);
   </script>
 @endsection
       

@@ -8580,7 +8580,9 @@ body.menu-bottom #collapse-menu {
   -webkit-transform: skew(-15deg);
           transform: skew(-15deg); }
 .btn i {
-  margin-right: 5px; }
+  margin-right: 5px;
+  padding-left: 6px;
+ }
 .btn.btn-icon {
   border-radius: 50%;
   width: 40px;

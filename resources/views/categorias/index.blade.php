@@ -57,7 +57,6 @@
       <div class="col-lg-8 col-md-12">
         <div class="card">
           <div class="card-header">
-                <h3>Categorias</h3>
           <div id="datatable-table" ></div>
         </div>
       </div>
@@ -74,16 +73,16 @@
         method: 'GET',
         success: function(data)
         {
+          let tabla = 'table';
           $("#datatable-table").empty();
           $("#datatable-table").append(data);
-          $('#table').DataTable({"order": [[ 0, "asc" ]]});
+          tableEs(tabla);
         }
       });
     }
 
     $( document ).ready(function() {
       tableCategoria();
-        console.log( "ready!" );
     });
 
     $("#agregar_form").submit(function(e){
@@ -170,7 +169,7 @@
       Swal.fire
       ({
         title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
+        text: "De elimnar a esta categoria!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

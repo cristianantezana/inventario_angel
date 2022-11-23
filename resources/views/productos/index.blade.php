@@ -2,7 +2,7 @@
 @section('contenido')
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header modal-header-primary">
           <h5 class="modal-title" id="exampleModalLabel">REGISTRAR PRODUCTO</h5>
@@ -63,27 +63,31 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="form-group col-6"> 
-                        <input class="form-control mr-sm-2" id="buscar" type="search" placeholder="Buscar" aria-label="Search">  
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </div>
+                          <input class="form-control" id="busqueda_persona" name="buscar" type="text" placeholder="Buscar Productos....."/>
+                        </div>
                       </div>
                       <div class="form-group col-6"> 
-                        <button type="button" " style="float: right;" class="btn btn-primary" 
-                          data-toggle="modal" data-target="#exampleModal">REGISTRAR NUEVO PRODUCTO
+                        <button type="button" style="float: right; color: white; font-weight: bold;" class="btn btn-primary" 
+                          data-toggle="modal" data-target="#exampleModal">REGISTRAR NUEVO PRODUCTO<i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                   <div class="card-block table-border-style">
                     <div class="table-responsive">
-                      <table class="table">
+                      <table class="table table-bordered table-striped table-hover" id="table">
                         <thead class="bg-primary">
                           <tr>
                             <th class="text-center" scope="col">ITEMS</th>
                             <th class="text-center" scope="col">NOMBRE</th>
                             <th class="text-center" scope="col">CATEGORIA</th>
                             <th class="text-center" scope="col">PRESENTACION</th>
-                            <th class="text-center" scope="col"></th>
-                            <th class="text-center" scope="col">EDITAR</th>
-                            <th class="text-center" scope="col">ELIMINAR</th>
+                            <th class="text-center" scope="col">ESTADO</th>
+                            <th class="text-center" scope="col">ACCIONES</th>
                           </tr>
                         </thead>
                         <tbody id="data_persona">
@@ -104,14 +108,12 @@
                                   </center>
                                 </td>
                               <td class="text-center">
-                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarPersona{{$item->cod_producto}}">
+                                <center>
+                                  <button type="button" class="btn btn-warning btn-sm mx-2 " data-toggle="modal" data-target="#editarPersona{{$item->cod_producto}}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                   </button>
-                              </td>
-                              <td>
-                                <center>
-                                  <button class="btn btn-danger eliminarPersona" 
-                                  action="{{ url('productos/destroy',$item->cod_producto) }}" method="DELETE" token="{{ csrf_token() }}" pagina="productos/index">
+                                  <button class="btn btn-danger btn-sm mx-2 eliminarProducto" 
+                                  action="{{ url('productos/destroy',$item->cod_producto) }}" method="DELETE" token="{{ csrf_token() }}" pagina="productos">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                   </button>
                                 </center>
@@ -119,7 +121,7 @@
                             </tr>
                                 {{--modal editar  --}}
                                 <div class="modal fade" id="editarPersona{{$item->cod_producto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                  <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                       <div class="modal-header modal-header-warning">
                                         <h4 class="modal-title" id="exampleModalLabel">EDITAR PRODUCTO</h4>
@@ -200,77 +202,9 @@
     </script>   
   @endif    
   <script type="text/javascript">
-    $('.form_eliminar').submit(function(e){
-      e.preventDefault();
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar este Producto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-      {
-        if(result.isConfirmed)
-        {
-            this.submit();
-        }
-      });
-    });
-          
-    $(document).on("click", ".eliminarPersona",function(){
-      var ruta = $("#ruta").val();
-      let action = $(this).attr("action");
-      let method = $(this).attr("method");
-      let token = $(this).attr("token");
-      let pagina = $(this).attr("pagina");
-      Swal.fire({
-        title: 'Estas seguro?',
-        text: "De elimnar a esta persona!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) =>
-        {
-          if(result.isConfirmed)
-          {
-            let datos = new FormData();
-            datos.append("_method", method);
-            datos.append("_token", token);
-            $.ajax
-            ({
-              url:action,
-              method: "POST",
-              data:datos,
-              cache:false,
-              contentType:false,
-              processData:false,
-              success: function(res)
-              {
-                if(res == "ok")
-                {
-                  Swal.fire({
-                  type: 'success',
-                  title: '!El registro ha siddo eliminado...',
-                  showConfirmButton: true,
-                  confirmButtonText: 'Cerrar',
-                  }).then((result) => {
-                    if (result.isConfirmed)
-                    {
-                      window.location = ruta+'/'+pagina;
-                    }
-                  });
-                }
-              }
-            })    
-          }
-        });
-    });
+    let clase = 'eliminarProducto';
+    let mensaje = "De elimnar a este Producto!";
+    eliminarPorRuta(mensaje,clase);
   </script>
 @endsection
       

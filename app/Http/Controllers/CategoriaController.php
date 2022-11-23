@@ -27,12 +27,12 @@ class CategoriaController extends Controller
     $contador = 1;
     if ($categorias->count() > 0)
     {
-      $tabla .= '<table id="table" class="table table-striped cell-border" style="width:100%">
-                  <thead class="bg-primary">
+      $tabla .= '<table id="table" class="table table-bordered table-striped table-hover"  >
+                  <thead style="background-color: #6777ef;">
                       <tr>
-                          <th><center>ITEM</center></th>
-                          <th><center>Nombre</center></th>
-                          <th><center>Acciones</center></th>
+                        <th style="color: #fff;"><center>ITEM</center></th>
+                        <th style="color: #fff;"><center>Nombre</center></th>
+                        <th style="color: #fff;"><center>Acciones</center></th>
                       </tr>
                   </thead>
                   <tbody>';
@@ -44,9 +44,9 @@ class CategoriaController extends Controller
                           <td>
                             <center>
                               <a href="#" id="'. $item->cod_categoria.'" data-toggle="modal"
-                              data-target="#staticBackdrop" class="text-success mx-1 editar" ><i class="fa fa-pencil h4"></i>
+                              data-target="#staticBackdrop" class="btn btn-warning btn-sm mx-2 editar"><i class="fa fa-pencil" aria-hidden="true"></i>
                               </a>
-                              <a href="#" id="'.$item->cod_categoria.'" class="text-danger mx-1 eliminar">
+                              <a href="#" id="'.$item->cod_categoria.'" class="btn btn-danger btn-sm mx-2 eliminar">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                               </a>
                             </center>
